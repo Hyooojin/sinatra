@@ -1,0 +1,5 @@
+# block
+# 1. {}
+# 2. do ~ end
+
+phone_book = {}

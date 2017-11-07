@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>잡동사니</title>
+    </head>
+    <body>
+        <h1>점심메뉴 추천</h1>
+        "hack your life" <br/>
+        <p>당신이 먹을 점심은: <%= @menu%></p>
+        
+        <!--<img src="<%= @photo %>">-->
+        <img src="<%= @photos[@menu] %>">
+  <!-- @menu 랜덤으로 추천된 메뉴가 저장되어있다. 
+       @menu에 해당하는 사진을 저장해두고, 
+       @menu가 선택될 때 마다 @menu와 함께 사진을 보여준다. -->
+       
+    <!--html과 루비코드를 연결시켜주어야 한다.-->
+    <!--html안에 루비코드를 임베디드 하겠다.-->
+    
+    </body>
+</html>
