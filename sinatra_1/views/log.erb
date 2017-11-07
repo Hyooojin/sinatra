@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>잡동사니</title>
+    </head>
+    <body>
+        <h1>LOL 전적 검색 로그</h1>
+        <table>
+          <tr>
+            <th>아이디</th>
+            <th>승</th> 
+            <th>패</th>
+            <th>날짜</th>
+          </tr>
+          <% @log.each do |row| %>
+          <tr>
+            <% row.each do |elem| %>
+            <td><%= elem %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </table>
+            <!--<p><%= @log%></p>-->
+            
+        
+       </form>
+    </body>
+</html>

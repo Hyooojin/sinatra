@@ -3,6 +3,7 @@ require 'sinatra'
 require 'nokogiri'
 require 'httparty'
 require 'uri'
+require "date"
 
 get '/' do
     send_file 'index.html'
@@ -66,8 +67,22 @@ get '/search' do
    @keyword = URI.encode(@id)
    res = HTTParty.get(url + @keyword)
    text = Nokogiri::HTML(res.body)
-   @win = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.wins')
-   @lose = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.losses')
+   @win = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.wins').text
+   @lose = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.losses').text
+   
+#   File.open("log.txt", 'a+') do |f|
+#       f.puts("#{@id}, #{@win.text}, " + Time.now.to_s)
+#   end
+   
+#   CSV.open('log.csv', 'a+') do |csv|
+#       csv << [@id, @win.text, @lose.text, Time.now.to_s]
+#   end
+  
+     csv_string = CSV.generate do |csv|
+          csv << [@id, @win.text, @lose.text, Time.now.to_s]
+      end
+   
+   erb :search
    
    
    
@@ -94,5 +109,14 @@ get '/search' do
     
     # @url = params[:url] 
     
-    erb :search
+    
+end
+
+
+get '/log' do
+    @log = [] #배열인데 배열의 한 행이 배열에 들어간다. 
+    CSV.foreach('log.csv') do |row|
+        @log << row
+    end
+    erb :log
 end
