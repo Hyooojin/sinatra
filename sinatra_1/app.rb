@@ -67,30 +67,21 @@ get '/search' do
    @keyword = URI.encode(@id)
    res = HTTParty.get(url + @keyword)
    text = Nokogiri::HTML(res.body)
-   @win = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.wins').text
-   @lose = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.losses').text
+   @win = text.css('span.wins').text
+   @lose = text.css('span.losses').text
    
+  CSV.open('log.csv', 'a+') do |csv|
+      csv << [@id, @win, @lose, Time.now.to_s]
+  end
 #   File.open("log.txt", 'a+') do |f|
 #       f.puts("#{@id}, #{@win.text}, " + Time.now.to_s)
 #   end
    
-#   CSV.open('log.csv', 'a+') do |csv|
-#       csv << [@id, @win.text, @lose.text, Time.now.to_s]
-#   end
   
-     csv_string = CSV.generate do |csv|
-          csv << [@id, @win.text, @lose.text, Time.now.to_s]
-      end
-   
-   erb :search
-   
-   
-   
-   
    
     # 받을 때는 params를 사용 sinatra가 제공하는 hash이다.
-    @keyword = params[:userName]
-    "#{@keyword}"
+    # @keyword = params[:userName]
+    # "#{@keyword}"
     # params = {:userName => "멜팅탁"} #이런식으로 저장 될 것
     # params[:userName]
     
@@ -108,8 +99,8 @@ get '/search' do
     # fighting = text.css('#highcharts-2 > svg > g.highcharts-series-group > g.highcharts-series.highcharts-series-0 > path:nth-child(1)')
     
     # @url = params[:url] 
-    
-    
+   erb :search
+
 end
 
 
