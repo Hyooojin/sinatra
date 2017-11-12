@@ -20,7 +20,7 @@
 
     객체 지향이 없다면?
     객체 지향 이전에는 프로그래밍은 저장, 반복, 실행의 반복이었다. 이러한 문제점을 해결하기 위해서 세상을 있는 그대로 표현, 세상의 모든 현상을 요약.
-    **주어 + 동사**로 설명이 가능
+    **주어 + 동사**로 설명이 가능하다.
 
     **무엇이 + 무엇한다**가 된다. 
 
@@ -28,6 +28,27 @@
 
     ​
 
+    * easy to use
+      : 쉽다
 
-  * easy to use
-    : 쉽다
+* Use Sinatra
+
+  * What is Sinatra?
+    : Sinatra는 최소한의 노력으로 루비 기반 웹 애플리케이션을 신속하게 만들 수 있게 해 주는 DSL이다. 
+    [Sinatra 참고 사이트](http://www.sinatrarb.com/intro-ko.html)
+
+  * Let's get started with Sinatra
+    ​
+    gem install sinatra
+
+    ​
+
+    require 'sinatra'
+
+    ​
+
+  * Sinatra로 웹사이트 구축! 
+
+     * 런치메뉴 추천 웹 사이트
+     * 로또 추천 웹 사이트
+     * OP.GG 사이트 통해서 정보 받아오기
