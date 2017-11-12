@@ -26,9 +26,8 @@
 
     **모든 것이 method(사물을 조작하는 것)이다.**
 
-    ​
 
-    * easy to use
+  * easy to use
       : 쉽다
 
 * Use Sinatra
